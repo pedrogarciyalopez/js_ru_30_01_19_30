@@ -3,6 +3,7 @@ import React from 'react'
 export default (Component) => class WrappedComponent extends React.Component {
 
     state = {
+        //Не привязывайся к названиям сущностей, вся суть декораторов в универсальности. Сделай openItemId
         openArticleId: null
     }
 
