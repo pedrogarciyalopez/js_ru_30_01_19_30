@@ -1,0 +1,11 @@
+.user-name, .comment, .submit {
+    display: block;
+    margin: 5px;
+    width: 300px;
+}
+.comment {
+    height: 100px;
+}
+.submit {
+    width: auto;
+}

@@ -1,24 +1,15 @@
 import React, { Component, PropTypes } from 'react'
 import Comment from './Comment'
+import AddComment from './AddComment/AddComment'
+
 
 class CommentList extends Component {
     static propTypes = {
         comments: PropTypes.array
     }
+
     static defaultProps = {
         comments: []
-    }
-    componentDidMount() {
-        console.log('---', 'mounted')
-    }
-
-    componentWillReceiveProps(nextProps) {
-       // console.log('---', this.props, nextProps)
-    }
-
-
-    componentWillUnmount() {
-        //console.log('---', 'unmounting')
     }
 
     state = {
@@ -42,7 +33,12 @@ class CommentList extends Component {
         if (!comments.length) return <h3>No comments yet</h3>
 
         const commentItems = comments.map(comment => <li key={comment.id}><Comment comment={comment} /></li>)
-        return <ul>{commentItems}</ul>
+        return (
+            <div>
+                <ul>{commentItems}</ul>
+                <AddComment/>
+            </div>
+        )
     }
 
     toggleOpen = ev => {
