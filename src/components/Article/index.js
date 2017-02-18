@@ -4,7 +4,7 @@ import CommentList from '../CommentList'
 import CSSTransition from 'react-addons-css-transition-group'
 import './style.css'
 import {connect} from 'react-redux'
-import {deleteArticle} from '../../AC'
+import {deleteArticle, addComment} from '../../AC'
 
 class Article extends Component {
     static propTypes = {
@@ -16,12 +16,6 @@ class Article extends Component {
         isOpen: PropTypes.bool,
         toggleOpen: PropTypes.func
     }
-/*
-
-    shouldComponentUpdate(nextProps, nextState) {
-        return nextProps.isOpen !== this.props.isOpen
-    }
-*/
 
     render() {
         const {article, toggleOpen} = this.props
@@ -42,16 +36,6 @@ class Article extends Component {
         )
     }
 
-    getContainerRef = (ref) => {
-        this.container = ref
-    }
-
-    getCommentsRef = (ref) => {
-        this.commentList = ref
-        if (!ref) return null
-//        console.log('---', ref.state.isOpen, findDOMNode(ref))
-    }
-
     getBody() {
         const {isOpen, article: {text, comments}} = this.props
         if (!isOpen) return null
@@ -59,9 +43,17 @@ class Article extends Component {
         return (
             <section>
                 {text}
-                <CommentList comments={comments} ref = {this.getCommentsRef} />
+                <CommentList
+                    comments={comments}
+                    addComment={this.addComment}
+                    ref = {this.getCommentsRef}
+                />
             </section>
         )
+    }
+
+    addComment = (comment) => {
+        this.props.addComment(this.props.article.id, comment)
     }
 
     handleDelete = ev => {
@@ -70,4 +62,7 @@ class Article extends Component {
     }
 }
 
-export default connect(null, { deleteArticle })(Article)
+export default connect(null, {
+    deleteArticle,
+    addComment
+})(Article)

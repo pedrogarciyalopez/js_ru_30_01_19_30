@@ -7,7 +7,6 @@ export default store => next => action => {
 
     next({...rest, type: type + START})
 
-    //dev only, no need in prod!!!!!
     setTimeout(() => {
         $.get(callAPI)
             .done(response => next({...rest, type: type + SUCCESS, response}))

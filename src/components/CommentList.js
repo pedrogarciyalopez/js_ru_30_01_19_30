@@ -6,20 +6,9 @@ class CommentList extends Component {
     static propTypes = {
         comments: PropTypes.array
     }
+
     static defaultProps = {
         comments: []
-    }
-    componentDidMount() {
-        console.log('---', 'mounted')
-    }
-
-    componentWillReceiveProps(nextProps) {
-       // console.log('---', this.props, nextProps)
-    }
-
-
-    componentWillUnmount() {
-        //console.log('---', 'unmounting')
     }
 
     state = {
@@ -48,7 +37,7 @@ class CommentList extends Component {
         const commentItems = comments.map(id => <li key={id}><Comment id={id} /></li>)
         return <div>
             <ul>{commentItems}</ul>
-            <NewCommentForm />
+            <NewCommentForm addComment={this.props.addComment} />
         </div>
     }
 
