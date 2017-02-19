@@ -13,6 +13,7 @@ export default (state = defaultState, action) => {
         case ADD_COMMENT:
             return {
                 ...state,
+                //вот этот спрэд лишний
                 ...{
                     [payload.id]: {
                         ...payload.comment,
