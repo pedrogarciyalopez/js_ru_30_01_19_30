@@ -51,7 +51,7 @@ class Article extends Component {
             </section>
         )
     }
-
+    //вот уже достаточно тяжело становится проследить передачу addCommment, я бы просто передавал article в CommentList
     addComment = (comment) => {
         this.props.addComment(this.props.article.id, comment)
     }
